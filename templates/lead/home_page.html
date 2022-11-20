@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <p>Home page hey!</p>
+
+    {% for lead in leads %}
+
+       <a href="{{lead.pk}}"><p>{{ lead.first_name}}</a> {{ lead.last_name }}</p>
+    {% endfor lead %}
+</body>
+</html>
