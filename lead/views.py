@@ -9,6 +9,9 @@ from .forms import LeadForm
 from .models import Lead, Agent
 
 
+def landing_page(request):
+    return render(request,"landing.html")
+
 def home_page(request):
     leads = get_list_or_404(Lead)
 

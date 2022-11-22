@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <p>Home page hey!</p>
     <a href="{% url 'lead-create' %}">Create lead</a>
 
@@ -12,5 +8,4 @@
 
        <a href="{% url 'lead-detail' lead.pk %}"><p>{{ lead.first_name}}</a> {{ lead.last_name }}</p>
     {% endfor lead %}
-</body>
-</html>
+{% endblock %}

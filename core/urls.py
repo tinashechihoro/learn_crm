@@ -1,22 +1,20 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path , include
 
 from lead.views import (
     home_page,
     lead_detail,
     lead_create,
     lead_update,
-    lead_delete
+    lead_delete,
+    landing_page
 
 
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_page,name='home-page'),
-    path('create/', lead_create,name='lead-create'),
+    path('', landing_page,name='landing-page'),
+    path('lead/', include('lead.urls')),
 
-    path('<int:pk>/update/', lead_update,name='lead-update'),
-    path('<int:pk>/delete/', lead_delete,name='lead-delete'),
-    path('<int:pk>/', lead_detail,name='lead-detail'),
 ]
