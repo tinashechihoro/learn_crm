@@ -6,10 +6,11 @@
 </head>
 <body>
     <p>Home page hey!</p>
+    <a href="{% url 'lead-create' %}">Create lead</a>
 
     {% for lead in leads %}
 
-       <a href="{{lead.pk}}"><p>{{ lead.first_name}}</a> {{ lead.last_name }}</p>
+       <a href="{% url 'lead-detail' lead.pk %}"><p>{{ lead.first_name}}</a> {{ lead.last_name }}</p>
     {% endfor lead %}
 </body>
 </html>
