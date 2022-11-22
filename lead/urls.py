@@ -15,7 +15,7 @@ from lead.views import (
 urlpatterns = [
 
     path('landing/', landing_page,name='landing-page'),
-    path('', home_page,name='home-page'),
+    path('', home_page,name='lead-list'),
     path('create/', lead_create,name='lead-create'),
 
     path('<int:pk>/update/', lead_update,name='lead-update'),
