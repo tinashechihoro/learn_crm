@@ -32,6 +32,14 @@ class Agent(models.Model):
 
 class Lead(TimeStampedModel):
 
+    TITLES_CHOICES = (
+        ('Mr','Mr'),
+        ('Mrs','Mrs'),
+        ('Miss','Miss'),
+        ('Ms','Ms'),
+
+    )
+
 
     LEAD_STATUS = (
         ('New','New'),
@@ -58,13 +66,23 @@ class Lead(TimeStampedModel):
     )
     agent = models.ForeignKey('Agent', on_delete=models.CASCADE)
     campaign =  models.ForeignKey(Campaign,related_name='lead', on_delete=models.DO_NOTHING)
-    case_reference =  models.CharField(max_length=50)
+    case_reference =  AutoSlugField(populate_from="id")
+    title = models.CharField(max_length=10, choices=TITLES_CHOICES, null=True, blank=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    date_of_birth = models.DateField(null=True, blank=True)
+    national_insuarance = models.DateField(null=True, blank=True)
+    mobile_number = models.CharField(max_length=255, null=True, blank=True)
+    work_number = models.CharField(max_length=255, null=True, blank=True)
+    home_number = models.CharField(max_length=255, null=True, blank=True)
+    address = models.TextField()
+    postal_code = models.CharField(max_length=255)
     client_name =  models.CharField(max_length=255)
     status =  models.CharField(max_length=20,default='New',choices=LEAD_STATUS)
     progress =  models.CharField(max_length=50,default='awaiting-allocation',choices=PROGRESS_CHOICES)
-    client_phone_number =  models.CharField(max_length=100)
     notes =  models.TextField( null=True, blank=True)
     closers_notes =  models.TextField( null=True, blank=True)
+    inspection_auditor_file =  models.FileField(upload_to="media")
 
     class Meta:  # new
         verbose_name_plural = "Leads"
