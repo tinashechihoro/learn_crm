@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -71,7 +72,7 @@ class Lead(TimeStampedModel):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     date_of_birth = models.DateField(null=True, blank=True)
-    national_insuarance = models.DateField(null=True, blank=True)
+    national_insuarance = models.CharField(max_length=255,null=True, blank=True)
     mobile_number = models.CharField(max_length=255, null=True, blank=True)
     work_number = models.CharField(max_length=255, null=True, blank=True)
     home_number = models.CharField(max_length=255, null=True, blank=True)
