@@ -1,14 +1,11 @@
-
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
 from django_extensions.db.models import TimeStampedModel
 
-class User(AbstractUser):
-    pass
-
-
+User =  get_user_model()
 class Campaign(TimeStampedModel):
     name =  models.CharField(max_length=255)
     sub_category1 = models.CharField(max_length=255,null=True,blank=True)
@@ -25,10 +22,10 @@ class Campaign(TimeStampedModel):
 
 
 class Agent(models.Model):
-    user =  models.OneToOneField(User, on_delete=models.CASCADE)
+    user =  models.OneToOneField(User,default=User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.email
+        return self.user
 
 
 class Lead(TimeStampedModel):
@@ -65,20 +62,18 @@ class Lead(TimeStampedModel):
 
 
     )
-    agent = models.ForeignKey('Agent', on_delete=models.CASCADE)
+    agent = models.ForeignKey(get_user_model(), default=get_user_model(),on_delete =models.CASCADE)
     campaign =  models.ForeignKey(Campaign,related_name='lead', on_delete=models.DO_NOTHING)
     case_reference =  AutoSlugField(populate_from="id")
     title = models.CharField(max_length=10, choices=TITLES_CHOICES, null=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    date_of_birth = models.DateField(null=True, blank=True)
     national_insuarance = models.CharField(max_length=255,null=True, blank=True)
     mobile_number = models.CharField(max_length=255, null=True, blank=True)
     work_number = models.CharField(max_length=255, null=True, blank=True)
     home_number = models.CharField(max_length=255, null=True, blank=True)
     address = models.TextField()
     postal_code = models.CharField(max_length=255)
-    client_name =  models.CharField(max_length=255)
     status =  models.CharField(max_length=20,default='New',choices=LEAD_STATUS)
     progress =  models.CharField(max_length=50,default='awaiting-allocation',choices=PROGRESS_CHOICES)
     notes =  models.TextField( null=True, blank=True)
@@ -89,7 +84,7 @@ class Lead(TimeStampedModel):
         verbose_name_plural = "Leads"
 
     def __str__(self):
-        return self.client_name
+        return self.first_name
 
 
 
