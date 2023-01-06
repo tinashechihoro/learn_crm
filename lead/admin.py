@@ -9,8 +9,9 @@ admin.site.site_title = "Lead Manager"
 admin.site.index_title = "Lead Manager"
 
 class LeadModelAdmin(admin.ModelAdmin):
-    list_display = ('campaign','case_reference','first_name','last_name')
-    search_fields  = ('campaign','case_reference','first_name','last_name','date_of_birth')
+    list_display = ('campaign','agent','case_reference','first_name','last_name','national_insuarance','status','progress')
+    search_fields  = ('campaign','case_reference','first_name','last_name','national_insuarance','status','progress')
+
     
 
 

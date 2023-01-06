@@ -1,16 +1,31 @@
 from django.shortcuts import (
-render,
-get_list_or_404 ,
-redirect,
-get_object_or_404
+    render,
+    get_list_or_404,
+    redirect,
+    get_object_or_404
 )
+from django.urls import reverse_lazy
+
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView)
 
 from .forms import LeadForm
 from .models import Lead, Agent
 
 
 def landing_page(request):
-    return render(request,"landing.html")
+    return render(request, "landing.html")
+
+
+class LeadListView(ListView):
+    model = Lead
+    template_name = 'lead/home_page.html'
+    context_object_name = 'leads'
+
 
 def home_page(request):
     leads = get_list_or_404(Lead)
@@ -22,86 +37,35 @@ def home_page(request):
     return render(request, 'lead/home_page.html', context)
 
 
-def lead_detail(request, pk):
-    print(pk)
-    lead = Lead.objects.get(id=pk)
-    context = {
-        'lead': lead
-
-    }
-    return render(request, 'lead/lead_detail.html', context)
+class LeadDetailView(DetailView):
+    model = Lead
+    template_name = 'lead/lead_detail.html'
 
 
-def lead_create(request):
-    form = LeadForm()
-    if request.method == "POST":
-        print('Received a post request')
-        form = LeadForm(request.POST)
-        if form.is_valid():
-            print('The form is valid')
-            print(form.cleaned_data)
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            age = form.cleaned_data['age']
-            agent = form.cleaned_data['agent']
-            Lead.objects.create(
-                first_name=first_name,
-                last_name=last_name,
-                age=age,
-                agent=agent
-            )
-            print("Lead has been created")
-            form.save()
-            return redirect('/')
+class LeadCreateView(CreateView):
+    model = Lead
+    template_name = 'lead/lead_create.html'
+    fields = [
+              'campaign',
+              'title',
+              'first_name',
+              'last_name',
+              'national_insuarance',
+              'mobile_number',
+              'work_number',
+              'home_number',
+              'address',
+              'postal_code',
+              'status',
+              ]
 
 
-    context = {
-        'form': LeadForm
-    }
-    return render(request, 'lead/lead_create.html', context)
+class LeadUpdateView(UpdateView):
+    model = Lead
+    template_name = 'lead/lead_update.html'
 
 
-def lead_update(request,pk):
-    lead =  get_object_or_404(Lead,pk=pk)
-    form =  LeadForm(instance=lead)
-    if request.method == "POST":
-        form =  LeadForm(request.POST,instance=lead)
-        if form.is_valid():
-            first_name =  form.cleaned_data['first_name']
-            last_name =  form.cleaned_data['last_name']
-            age =  form.cleaned_data['age']
-            lead.first_name =  first_name
-            lead.last_name =  last_name
-            lead.age =  age
-            lead.save()
-            return redirect('/')
-
-
-
-    context = {
-        'lead': lead,
-        'form':form
-
-    }
-    return render(request, 'lead/lead_update.html', context)
-
-
-
-def lead_delete(request,pk):
-    lead = Lead.objects.get(id=pk)
-    lead.delete()
-    return redirect('/')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class LeadDeleteView(DeleteView):
+    model = Lead
+    template_name = 'post_delete.html'
+    success_url = reverse_lazy('home')
