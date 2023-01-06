@@ -64,7 +64,7 @@ class Lead(TimeStampedModel):
     )
     agent = models.ForeignKey(get_user_model(), default=get_user_model(),on_delete =models.CASCADE)
     campaign =  models.ForeignKey(Campaign,related_name='lead', on_delete=models.DO_NOTHING)
-    case_reference =  AutoSlugField(populate_from="id")
+    case_reference =  AutoSlugField(populate_from="id", unique=True)
     title = models.CharField(max_length=10, choices=TITLES_CHOICES, null=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
