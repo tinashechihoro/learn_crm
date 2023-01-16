@@ -1,16 +1,37 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  app:
+  web:
     build: .
+    command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app
+      - .:/code
     ports:
       - 8000:8000
+    depends_on:
+      - db
 
-    image: app:lead
-    container_name: app_lead
-    command:  python manage.py runserver 0.0.0.0:8000
+  db:
+    image: postgres:11
+    environment:
+        - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -17,55 +17,194 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Campaign',
+            name="Campaign",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, verbose_name='created')),
-                ('modified', django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name='modified')),
-                ('name', models.CharField(max_length=255)),
-                ('sub_category1', models.CharField(blank=True, max_length=255, null=True)),
-                ('sub_category2', models.CharField(blank=True, max_length=255, null=True)),
-                ('sub_category3', models.CharField(blank=True, max_length=255, null=True)),
-                ('sub_category4', models.CharField(blank=True, max_length=255, null=True)),
-                ('product', models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    django_extensions.db.fields.CreationDateTimeField(
+                        auto_now_add=True, verbose_name="created"
+                    ),
+                ),
+                (
+                    "modified",
+                    django_extensions.db.fields.ModificationDateTimeField(
+                        auto_now=True, verbose_name="modified"
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                (
+                    "sub_category1",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                (
+                    "sub_category2",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                (
+                    "sub_category3",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                (
+                    "sub_category4",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                ("product", models.CharField(blank=True, max_length=255, null=True)),
             ],
             options={
-                'verbose_name_plural': 'Campaign',
+                "verbose_name_plural": "Campaign",
             },
         ),
         migrations.CreateModel(
-            name='Lead',
+            name="Lead",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, verbose_name='created')),
-                ('modified', django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name='modified')),
-                ('case_reference', django_extensions.db.fields.AutoSlugField(blank=True, editable=False, populate_from='id', unique=True)),
-                ('title', models.CharField(blank=True, choices=[('Mr', 'Mr'), ('Mrs', 'Mrs'), ('Miss', 'Miss'), ('Ms', 'Ms')], max_length=10, null=True)),
-                ('first_name', models.CharField(max_length=255)),
-                ('last_name', models.CharField(max_length=255)),
-                ('national_insuarance', models.CharField(blank=True, max_length=255, null=True)),
-                ('mobile_number', models.CharField(blank=True, max_length=255, null=True)),
-                ('work_number', models.CharField(blank=True, max_length=255, null=True)),
-                ('home_number', models.CharField(blank=True, max_length=255, null=True)),
-                ('address', models.TextField()),
-                ('postal_code', models.CharField(max_length=255)),
-                ('status', models.CharField(choices=[('New', 'New'), ('In-progress', 'In-progress'), ('Pending', 'Pending'), ('Accepted', 'Accepted'), ('Sale', 'Sale'), ('Dead-Rejected', 'Dead-Rejected')], default='New', max_length=20)),
-                ('progress', models.CharField(choices=[('awaiting-allocation', 'awaiting-allocation'), ('awaiting-photos', 'awaiting-photos'), ('awaiting-cfa', 'awaiting-cfa'), ('awaiting-ia', 'awaiting-ia'), ('dead-no-contact', 'dead-no-contact'), ('dead-no-interested', 'dead-no-interested'), ('call-back', 'call-back'), ('paper-work-sent', 'paper-work-sent'), ('paper-work-received', 'paper-work-received'), ('pending-triage', 'pending-triage')], default='awaiting-allocation', max_length=50)),
-                ('notes', models.TextField(blank=True, null=True)),
-                ('closers_notes', models.TextField(blank=True, null=True)),
-                ('inspection_auditor_file', models.FileField(upload_to='media')),
-                ('agent', models.ForeignKey(default=accounts.models.User, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('campaign', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='lead', to='lead.campaign')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    django_extensions.db.fields.CreationDateTimeField(
+                        auto_now_add=True, verbose_name="created"
+                    ),
+                ),
+                (
+                    "modified",
+                    django_extensions.db.fields.ModificationDateTimeField(
+                        auto_now=True, verbose_name="modified"
+                    ),
+                ),
+                (
+                    "case_reference",
+                    django_extensions.db.fields.AutoSlugField(
+                        blank=True, editable=False, populate_from="id", unique=True
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Mr", "Mr"),
+                            ("Mrs", "Mrs"),
+                            ("Miss", "Miss"),
+                            ("Ms", "Ms"),
+                        ],
+                        max_length=10,
+                        null=True,
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=255)),
+                ("last_name", models.CharField(max_length=255)),
+                (
+                    "national_insuarance",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                (
+                    "mobile_number",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                (
+                    "work_number",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                (
+                    "home_number",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                ("address", models.TextField()),
+                ("postal_code", models.CharField(max_length=255)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("New", "New"),
+                            ("In-progress", "In-progress"),
+                            ("Pending", "Pending"),
+                            ("Accepted", "Accepted"),
+                            ("Sale", "Sale"),
+                            ("Dead-Rejected", "Dead-Rejected"),
+                        ],
+                        default="New",
+                        max_length=20,
+                    ),
+                ),
+                (
+                    "progress",
+                    models.CharField(
+                        choices=[
+                            ("awaiting-allocation", "awaiting-allocation"),
+                            ("awaiting-photos", "awaiting-photos"),
+                            ("awaiting-cfa", "awaiting-cfa"),
+                            ("awaiting-ia", "awaiting-ia"),
+                            ("dead-no-contact", "dead-no-contact"),
+                            ("dead-no-interested", "dead-no-interested"),
+                            ("call-back", "call-back"),
+                            ("paper-work-sent", "paper-work-sent"),
+                            ("paper-work-received", "paper-work-received"),
+                            ("pending-triage", "pending-triage"),
+                        ],
+                        default="awaiting-allocation",
+                        max_length=50,
+                    ),
+                ),
+                ("notes", models.TextField(blank=True, null=True)),
+                ("closers_notes", models.TextField(blank=True, null=True)),
+                ("inspection_auditor_file", models.FileField(upload_to="media")),
+                (
+                    "agent",
+                    models.ForeignKey(
+                        default=accounts.models.User,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "campaign",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="lead",
+                        to="lead.campaign",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Leads',
+                "verbose_name_plural": "Leads",
             },
         ),
         migrations.CreateModel(
-            name='Agent',
+            name="Agent",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.OneToOneField(default=accounts.models.User, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        default=accounts.models.User,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
