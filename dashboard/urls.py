@@ -1,12 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 
-from dashboard.views import (
-    DashboardView
-)
+from dashboard.views import DashboardView
 
 urlpatterns = [
-
-    path('', DashboardView.as_view(), name='dashboard'),
-
+    path("", DashboardView.as_view(), name="dashboard"),
 ]

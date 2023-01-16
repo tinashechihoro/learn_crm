@@ -1,22 +1,36 @@
 from django.contrib import admin
 
-from .models import Agent,User,Lead , Campaign
-
+from .models import Agent, User, Lead, Campaign
 
 
 admin.site.site_header = "CRM Lead Manager"
 admin.site.site_title = "Lead Manager"
 admin.site.index_title = "Lead Manager"
 
+
 class LeadModelAdmin(admin.ModelAdmin):
-    list_display = ('campaign','agent','case_reference','first_name','last_name','national_insuarance','status','progress')
-    search_fields  = ('campaign','case_reference','first_name','last_name','national_insuarance','status','progress')
+    list_display = (
+        "campaign",
+        "agent",
+        "case_reference",
+        "first_name",
+        "last_name",
+        "national_insurance",
+        "status",
+        "progress",
+    )
+    search_fields = (
+        "campaign",
+        "case_reference",
+        "first_name",
+        "last_name",
+        "national_insuarance",
+        "status",
+        "progress",
+    )
 
-    
 
-
-
-admin.site.register(Lead,LeadModelAdmin)
+admin.site.register(Lead, LeadModelAdmin)
 
 
 admin.site.register(Campaign)
