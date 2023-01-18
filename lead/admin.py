@@ -12,7 +12,7 @@ class LeadModelAdmin(admin.ModelAdmin):
     list_display = (
         "campaign",
         "agent",
-        "case_reference",
+        "pk",
         "first_name",
         "last_name",
         "national_insurance",
@@ -24,7 +24,7 @@ class LeadModelAdmin(admin.ModelAdmin):
         "case_reference",
         "first_name",
         "last_name",
-        "national_insuarance",
+        "national_insurance",
         "status",
         "progress",
     )
