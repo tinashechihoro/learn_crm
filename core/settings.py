@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "lead",
     "dashboard",
     "accounts",
+    "project",
 ]
 
 MIDDLEWARE = [

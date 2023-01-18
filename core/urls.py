@@ -10,6 +10,7 @@ urlpatterns = [
     path("", landing_page, name="landing-page"),
     path("lead/", include("lead.urls")),
     path("dashboard/", include("dashboard.urls")),
+    path("project/", include("project.urls")),
     path("lead/", include("lead.urls")),
 ]
 
