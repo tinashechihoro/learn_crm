@@ -31,7 +31,6 @@ class Agent(models.Model):
 
 
 class Lead(TimeStampedModel):
-
     TITLES_CHOICES = (
         ("Mr", "Mr"),
         ("Mrs", "Mrs"),
@@ -69,21 +68,22 @@ class Lead(TimeStampedModel):
     title = models.CharField(
         max_length=10, choices=TITLES_CHOICES, null=True, blank=True
     )
+    entry_date = models.DateField(null=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    national_insurance  = models.CharField(max_length=255, null=True, blank=True)
+    national_insurance = models.CharField(max_length=255, null=True, blank=True)
     mobile_number = models.CharField(max_length=50, null=True, blank=True)
     work_number = models.CharField(max_length=50, null=True, blank=True)
     home_number = models.CharField(max_length=255, null=True, blank=True)
     address = models.TextField()
-    postal_code = models.CharField(max_length=255,null=True, blank=True)
+    postal_code = models.CharField(max_length=255, null=True, blank=True)
     status = models.CharField(max_length=20, default="New", choices=LEAD_STATUS)
     progress = models.CharField(
         max_length=50, default="awaiting-allocation", choices=PROGRESS_CHOICES
     )
     notes = models.TextField(null=True, blank=True)
-    closers_notes = models.TextField(null=True, blank=True,)
-    inspection_auditor_file = models.FileField(upload_to="media",null=True, blank=True)
+    closers_notes = models.TextField(null=True, blank=True, )
+    inspection_auditor_file = models.FileField(upload_to="media", null=True, blank=True)
 
     class Meta:  # new
         verbose_name_plural = "Leads"
